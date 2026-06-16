@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xubom | Portfólio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="lang-switcher-container">
+        <button class="lang-btn" id="btnTranslate" onclick="toggleLanguage()">
+            🌐 EN
+        </button>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Xubom</h1>
+            <p>Minecraft Marketplace<br>Content Developer.</p>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll para baixo</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <main class="compact-section">
+
+        <div class="about-grid">
+            <div class="about-text">
+                <span class="section-title">Sobre Mim</span>
+                <h2>Olá, eu sou o Xubom.</h2>
+                <p>Escreva aqui um pouco sobre sua trajetória, o que te motiva a criar conteúdos e como você transforma
+                    ideias em blocos, códigos e experiências imersivas dentro do universo do Minecraft Bedrock.</p>
+            </div>
+
+            <div class="skills-container">
+                <div class="notranslate">
+                    <span class="section-title">Technical Skills</span>
+                    <div class="skills-list">
+                        <span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span>
+                        <span class="tag"><i class="fa-solid fa-code"></i>TypeScript</span>
+                        <span class="tag"><i class="fa-solid fa-cube"></i>Bedrock API</span>
+                    </div>
+                </div>
+
+                <div class="notranslate">
+                    <span class="section-title">Developer Tools</span>
+                    <div class="tools-list">
+                        <span class="tag"><i class="fa-brands fa-github"></i>GitHub</span>
+                        <span class="tag"><i class="fa-solid fa-cubes"></i>Blockbench</span>
+                        <span class="tag"><i class="fa-solid fa-terminal"></i>VS Code</span>
+                        <span class="tag"><i class="fa-solid fa-snowflake"></i>Snowstorm</span>
+                        <span class="tag"><i class="fa-brands fa-node-js"></i>Node.js</span>
+                        <span class="tag"><i class="fa-solid fa-check-to-slot"></i>ClickUp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="teams-container notranslate">
+            <span class="section-title">Experiência</span>
+            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Times que já participei</h2>
+
+            <div class="teams-big-panel">
+                <a href="https://www.lbsg.net/" target="_blank" class="team-icon-wrapper">
+                    <img src="assets/teams/lifeboat.png" alt="LifeBoat Logo">
+                </a>
+                <a href="https://eternalcreations.games/" target="_blank" class="team-icon-wrapper">
+                    <img src="assets/teams/eternal_creations.png" alt="Eternal Creations Logo">
+                </a>
+            </div>
+        </div>
+
+        <div class="projects-panel-title">
+            <span class="section-title">Portfólio</span>
+            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Projetos que participei</h2>
+        </div>
+
+        <div class="projects-infinite-slider-container" id="sliderContainer">
+            <div class="projects-marquee-track" id="sliderTrack">
+
+                <div class="projects-block">
+
+                    <div class="project-row-item">
+                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank" class="project-img-link">
+                            <div class="project-row-image">
+                                <img src="assets/projects/better_structures.png" alt="Capa Projeto Alpha">
+                            </div>
+                        </a>
+                        <div class="project-row-info">
+                            <h3>Projeto Alpha</h3>
+                            <p>Descrição resumida do projeto. Explique os desafios do mapa ou add-on, o que você
+                                desenvolveu com a Bedrock API e como foi o resultado final publicado.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-row-item">
+                        <a href="https://youtu.be/X7TanMKCNFU?si=9AbbzaSpy9HIEShI" target="_blank" class="project-img-link">
+                            <div class="project-row-image">
+                                <img src="assets/projects/drift_simulator.png" alt="Capa Projeto Beta">
+                            </div>
+                        </a>
+                        <div class="project-row-info">
+                            <h3>Projeto Beta</h3>
+                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
+                                modernas para otimização e publicação nos servidores.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-row-item">
+                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank" class="project-img-link">
+                            <div class="project-row-image">
+                                <img src="assets/projects/creaking.png" alt="Capa Projeto Beta">
+                            </div>
+                        </a>
+                        <div class="project-row-info">
+                            <h3>Projeto Beta</h3>
+                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
+                                modernas para otimização e publicação nos servidores.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-row-item">
+                        <a href="https://youtu.be/t-SVtUnI2U8?si=vwMqaGzN8NnAOCc4" target="_blank" class="project-img-link">
+                            <div class="project-row-image">
+                                <img src="assets/projects/golems.png" alt="Capa Projeto Beta">
+                            </div>
+                        </a>
+                        <div class="project-row-info">
+                            <h3>Projeto Beta</h3>
+                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
+                                modernas para otimização e publicação nos servidores.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-row-item">
+                        <a href="https://youtu.be/H0aaYidjMOE?si=EQ8hrmgdsWj0riGF" target="_blank" class="project-img-link">
+                            <div class="project-row-image">
+                                <img src="assets/projects/pixel_pals.png" alt="Capa Projeto Beta">
+                            </div>
+                        </a>
+                        <div class="project-row-info">
+                            <h3>Projeto Beta</h3>
+                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
+                                modernas para otimização e publicação nos servidores.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main> 
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo notranslate">Xubom</span>
+                <p class="footer-credits">
+                    &copy; 2026 Xubom. Todos os direitos reservados.<br>
+                    Os direitos dos projetos pertencem às respectivas empresas e marcas parceiras.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <span class="footer-heading">Social</span>
+                <a href="" target="_blank" rel="noopener noreferrer" class="footer-social-link notranslate">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script src="script.js"></script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>
