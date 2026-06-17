@@ -7,12 +7,14 @@
     <title>Xubom | Portfólio</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-follower" id="cursorFollower"></div>
     <div id="google_translate_element" style="display:none;"></div>
 
     <div class="lang-switcher-container">
@@ -32,57 +34,78 @@
         </div>
     </section>
 
+    <!-- ÁREA CONTEÚDO COMPACTO -->
     <main class="compact-section">
 
+        <!-- 2. ABOUT ME & SKILLS -->
         <div class="about-grid">
             <div class="about-text">
-                <span class="section-title">Sobre Mim</span>
-                <h2>Olá, eu sou o Xubom.</h2>
-                <p>Escreva aqui um pouco sobre sua trajetória, o que te motiva a criar conteúdos e como você transforma
-                    ideias em blocos, códigos e experiências imersivas dentro do universo do Minecraft Bedrock.</p>
+                <span class="section-title">About Me</span>
+                <h2>Hey, I'm Xubom.</h2>
+                <p>I'm a 23-year-old Brazilian developer specializing in creating advanced experiences for Minecraft
+                    Bedrock. Using the official Minecraft Script API, I design and develop complex gameplay systems,
+                    including custom entities, interactive blocks, and unique combat mechanics..</p>
+                <p style="margin-top: 15px;">I'm passionate about pushing Minecraft's technical boundaries by building
+                    innovative addons and maps featuring detailed mechanics, optimized systems, and engaging player
+                    experiences..</p>
             </div>
 
             <div class="skills-container">
-                <div class="notranslate">
+                <div>
                     <span class="section-title">Technical Skills</span>
                     <div class="skills-list">
-                        <span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span>
-                        <span class="tag"><i class="fa-solid fa-code"></i>TypeScript</span>
-                        <span class="tag"><i class="fa-solid fa-cube"></i>Bedrock API</span>
+                        <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank"
+                            rel="noopener noreferrer" class="tag notranslate"><i
+                                class="fa-brands fa-js"></i>JavaScript</a>
+                        <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-code"></i>TypeScript</a>
+                        <a href="https://learn.microsoft.com/minecraft/creator/" target="_blank"
+                            rel="noopener noreferrer" class="tag notranslate"><i class="fa-solid fa-cube"></i>Bedrock
+                            API</a>
                     </div>
                 </div>
 
-                <div class="notranslate">
+                <div>
                     <span class="section-title">Developer Tools</span>
                     <div class="tools-list">
-                        <span class="tag"><i class="fa-brands fa-github"></i>GitHub</span>
-                        <span class="tag"><i class="fa-solid fa-cubes"></i>Blockbench</span>
-                        <span class="tag"><i class="fa-solid fa-terminal"></i>VS Code</span>
-                        <span class="tag"><i class="fa-solid fa-snowflake"></i>Snowstorm</span>
-                        <span class="tag"><i class="fa-brands fa-node-js"></i>Node.js</span>
-                        <span class="tag"><i class="fa-solid fa-check-to-slot"></i>ClickUp</span>
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-brands fa-github"></i>GitHub</a>
+                        <a href="https://www.blockbench.net/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-cubes"></i>Blockbench</a>
+                        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-terminal"></i>VS Code</a>
+                        <a href="https://github.com/Blockbench/Snowstorm" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-snowflake"></i>Snowstorm</a>
+                        <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-brands fa-node-js"></i>Node.js</a>
+                        <a href="https://clickup.com/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-check-to-slot"></i>ClickUp</a>
+                        <a href="https://www.aseprite.org/" target="_blank" rel="noopener noreferrer"
+                            class="tag notranslate"><i class="fa-solid fa-palette"></i>Aseprite</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="teams-container notranslate">
-            <span class="section-title">Experiência</span>
-            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Times que já participei</h2>
+        <!-- 4. TIMES QUE PARTICIPOU -->
+        <div class="teams-container">
+            <span class="section-title">Experience</span>
+            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Teams I've worked with</h2>
 
             <div class="teams-big-panel">
                 <a href="https://www.lbsg.net/" target="_blank" class="team-icon-wrapper">
-                    <img src="assets/teams/lifeboat.png" alt="LifeBoat Logo">
+                    <img src="assets/teams/lifeboat.png" alt="LifeBoat Logo" class="notranslate">
                 </a>
                 <a href="https://eternalcreations.games/" target="_blank" class="team-icon-wrapper">
-                    <img src="assets/teams/eternal_creations.png" alt="Eternal Creations Logo">
+                    <img src="assets/teams/eternal_creations.png" alt="Eternal Creations Logo" class="notranslate">
                 </a>
             </div>
         </div>
 
+        <!-- 3. PAINEL DE PROJETOS -->
         <div class="projects-panel-title">
-            <span class="section-title">Portfólio</span>
-            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Projetos que participei</h2>
+            <span class="section-title">Portfolio</span>
+            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Projects I've been involved in</h2>
         </div>
 
         <div class="projects-infinite-slider-container" id="sliderContainer">
@@ -90,68 +113,78 @@
 
                 <div class="projects-block">
 
+                    <!-- PROJETO 1 -->
                     <div class="project-row-item">
-                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank" class="project-img-link">
+                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank"
+                            class="project-img-link">
                             <div class="project-row-image">
                                 <img src="assets/projects/better_structures.png" alt="Capa Projeto Alpha">
                             </div>
                         </a>
                         <div class="project-row-info">
-                            <h3>Projeto Alpha</h3>
-                            <p>Descrição resumida do projeto. Explique os desafios do mapa ou add-on, o que você
-                                desenvolveu com a Bedrock API e como foi o resultado final publicado.</p>
+                            <h3 class="notranslate">Better Structures</h3>
+                            <p>In the End Update, we built an extensive adventure experience featuring a giant custom
+                                structure, engaging challenges, rewarding loot progression, and a fully designed boss
+                                fight..</p>
                         </div>
                     </div>
 
+                    <!-- PROJETO 2 -->
                     <div class="project-row-item">
-                        <a href="https://youtu.be/X7TanMKCNFU?si=9AbbzaSpy9HIEShI" target="_blank" class="project-img-link">
+                        <a href="https://youtu.be/X7TanMKCNFU?si=9AbbzaSpy9HIEShI" target="_blank"
+                            class="project-img-link">
                             <div class="project-row-image">
                                 <img src="assets/projects/drift_simulator.png" alt="Capa Projeto Beta">
                             </div>
                         </a>
                         <div class="project-row-info">
-                            <h3>Projeto Beta</h3>
-                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
-                                modernas para otimização e publicação nos servidores.</p>
+                            <h3 class="notranslate">Drift Simulator</h3>
+                            <p>This project introduced a complete drift simulation experience, including a diverse
+                                selection of customizable cars, dynamic interfaces, unique gameplay mechanics, and
+                                immersive driving designed to keep players entertained.</p>
                         </div>
                     </div>
 
+                    <!-- PROJETO 3 -->
                     <div class="project-row-item">
-                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank" class="project-img-link">
+                        <a href="https://youtu.be/ig4cKqL6HDI?si=NjqHxVi00AV2l9Fk" target="_blank"
+                            class="project-img-link">
                             <div class="project-row-image">
                                 <img src="assets/projects/creaking.png" alt="Capa Projeto Beta">
                             </div>
                         </a>
                         <div class="project-row-info">
-                            <h3>Projeto Beta</h3>
-                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
-                                modernas para otimização e publicação nos servidores.</p>
+                            <h3 class="notranslate">Creaking+</h3>
+                            <p>The Creakings have spread to every biome, introducing unique biome-specific variants.
+                                40+ blocks, 20+ items, 10 Creaking variants [Vibrant Visuals support].</p>
                         </div>
                     </div>
 
+                    <!-- PROJETO 4 -->
                     <div class="project-row-item">
-                        <a href="https://youtu.be/t-SVtUnI2U8?si=vwMqaGzN8NnAOCc4" target="_blank" class="project-img-link">
+                        <a href="https://youtu.be/t-SVtUnI2U8?si=vwMqaGzN8NnAOCc4" target="_blank"
+                            class="project-img-link">
                             <div class="project-row-image">
                                 <img src="assets/projects/golems.png" alt="Capa Projeto Beta">
                             </div>
                         </a>
                         <div class="project-row-info">
-                            <h3>Projeto Beta</h3>
-                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
-                                modernas para otimização e publicação nos servidores.</p>
+                            <h3 class="notranslate">Golems</h3>
+                            <p>Add custom Golems and Mini Golems to your world, each with unique utility and combatabilities.62 buildable Golems,Farming, gathering, chopping, and enchanting and more.</p>
                         </div>
                     </div>
 
+                    <!-- PROJETO 5 -->
                     <div class="project-row-item">
-                        <a href="https://youtu.be/H0aaYidjMOE?si=EQ8hrmgdsWj0riGF" target="_blank" class="project-img-link">
+                        <a href="https://youtu.be/H0aaYidjMOE?si=EQ8hrmgdsWj0riGF" target="_blank"
+                            class="project-img-link">
                             <div class="project-row-image">
                                 <img src="assets/projects/pixel_pals.png" alt="Capa Projeto Beta">
                             </div>
                         </a>
                         <div class="project-row-info">
-                            <h3>Projeto Beta</h3>
-                            <p>Descrição do segundo projeto. Desenvolvido de forma integrada utilizando ferramentas
-                                modernas para otimização e publicação nos servidores.</p>
+                            <h3 class="notranslate">Pixel Pals Evolved</h3>
+                            <p>Capture, evolve, and battle with 102 unique pets while exploring and becoming the ultimate trainer.</p>
                         </div>
                     </div>
 
@@ -160,31 +193,34 @@
             </div>
         </div>
 
-    </main> 
+    </main>
 
+    <!-- RODAPÉ PREMIUM -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <span class="footer-logo notranslate">Xubom</span>
                 <p class="footer-credits">
-                    &copy; 2026 Xubom. Todos os direitos reservados.<br>
+                    &copy; 2026 <span class="notranslate">Xubom</span>. Todos os direitos reservados.<br>
                     Os direitos dos projetos pertencem às respectivas empresas e marcas parceiras.
                 </p>
             </div>
-            
+
             <div class="footer-links">
                 <span class="footer-heading">Social</span>
-                <a href="" target="_blank" rel="noopener noreferrer" class="footer-social-link notranslate">
+                <a href="https://github.com/SEU_USUARIO_AQUI" target="_blank" rel="noopener noreferrer"
+                    class="footer-social-link notranslate">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
             </div>
         </div>
     </footer>
-    
+
 
     <script src="script.js"></script>
-    
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 

@@ -7,81 +7,49 @@ const cloneBlock = originalBlock.cloneNode(true);
 cloneBlock.setAttribute('aria-hidden', 'true');
 track.appendChild(cloneBlock);
 
-let isDragging = false;
 let isHovered = false; 
-let startX = 0;
 let currentTranslate = 0;
-let prevTranslate = 0;
-let speed = -1;
+let speed = -1; // Velocidade da movimentação automática contínua
 let animationFrameId;
-let dragDistance = 0;
 
 function getBlockWidth() {
     return track.children[0].offsetWidth;
 }
 
 function updateSliderPosition() {
-    if (!isDragging && !isHovered) {
+    // Só move automaticamente se o mouse NÃO estiver em cima do slider
+    if (!isHovered) {
         currentTranslate += speed;
-
-        const limit = -getBlockWidth();
-        if (currentTranslate <= limit) {
-            currentTranslate = 0;
-        }
-        if (currentTranslate > 0) {
-            currentTranslate = limit;
-        }
-
+        ajustarLimites();
         track.style.transform = `translateX(${currentTranslate}px)`;
     }
     animationFrameId = requestAnimationFrame(updateSliderPosition);
 }
 
-function startDrag(e) {
-    isDragging = true;
-    dragDistance = 0;
-    container.classList.add('dragging');
-    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    prevTranslate = currentTranslate;
-    cancelAnimationFrame(animationFrameId);
-}
-
-function drag(e) {
-    if (!isDragging) return;
-    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    dragDistance = Math.abs(deltaX);
-
-    currentTranslate = prevTranslate + deltaX;
-
+function ajustarLimites() {
     const limit = -getBlockWidth();
     if (currentTranslate <= limit) {
         currentTranslate += getBlockWidth();
-        startX = currentX - (currentTranslate - prevTranslate);
     }
     if (currentTranslate > 0) {
         currentTranslate -= getBlockWidth();
-        startX = currentX - (currentTranslate - prevTranslate);
     }
+}
 
+// NOVA LÓGICA: Movimentação horizontal através do Scroll (Rodinha do Mouse)
+container.addEventListener('wheel', (e) => {
+    // Evita que a página role para baixo enquanto rola o mouse dentro do slider
+    e.preventDefault();
+
+    // Altera a posição baseada na intensidade do scroll (e.deltaY)
+    // Multiplicado por 0.8 para suavizar o movimento
+    currentTranslate -= e.deltaY * 0.8;
+    
+    ajustarLimites();
     track.style.transform = `translateX(${currentTranslate}px)`;
-}
+}, { passive: false });
 
-function endDrag(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    container.classList.remove('dragging');
-    animationFrameId = requestAnimationFrame(updateSliderPosition);
-}
-
-// Evita abrir o link se o usuário apenas arrastou o slider
-track.addEventListener('click', (e) => {
-    if (dragDistance > 10) {
-        e.preventDefault();
-    }
-});
-
-// Congelar no Hover
+// Congelar animação automática no Hover
 container.addEventListener('mouseenter', () => {
     isHovered = true;
 });
@@ -89,14 +57,6 @@ container.addEventListener('mouseenter', () => {
 container.addEventListener('mouseleave', () => {
     isHovered = false;
 });
-
-container.addEventListener('mousedown', startDrag);
-window.addEventListener('mousemove', drag);
-window.addEventListener('mouseup', endDrag);
-
-container.addEventListener('touchstart', startDrag);
-window.addEventListener('touchmove', drag);
-window.addEventListener('touchend', endDrag);
 
 animationFrameId = requestAnimationFrame(updateSliderPosition);
 
@@ -129,3 +89,50 @@ function toggleLanguage() {
         }
     }
 }
+
+// LÓGICA DO CURSOR PERSONALIZADO
+const dot = document.getElementById('customCursor');
+const follower = document.getElementById('cursorFollower');
+
+let mouseX = 0, mouseY = 0; // Posição real do mouse
+let followerX = 0, followerY = 0; // Posição suave do círculo de trás
+
+// Atualiza a posição real do mouse e move o ponto central instantaneamente
+window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    if(dot) {
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+    }
+});
+
+// Função de animação contínua para criar o efeito "smooth" no seguidor
+function animateCursor() {
+    // O valor '0.15' controla a suavidade. Menor = mais lento/smooth. Maior = mais rápido.
+    followerX += (mouseX - followerX) * 0.15;
+    followerY += (mouseY - followerY) * 0.15;
+    
+    if(follower) {
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+    }
+    
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Adiciona efeitos de "Hover" ao passar em botões, links e elementos clicáveis
+const clickables = document.querySelectorAll('a, button, .tag, .project-img-link, .team-icon-wrapper');
+
+clickables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        dot.classList.add('hover');
+        follower.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+        dot.classList.remove('hover');
+        follower.classList.remove('hover');
+    });
+});
