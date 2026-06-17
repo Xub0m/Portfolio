@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xubom | Portfólio</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -13,6 +16,7 @@
 
 <body>
 
+    <div class="voxel-field" id="voxelField"></div>
     <div class="custom-cursor" id="customCursor"></div>
     <div class="custom-cursor-follower" id="cursorFollower"></div>
     <div id="google_translate_element" style="display:none;"></div>
@@ -39,7 +43,7 @@
 
         <!-- 2. ABOUT ME & SKILLS -->
         <div class="about-grid">
-            <div class="about-text">
+            <div class="about-text reveal">
                 <span class="section-title">About Me</span>
                 <h2>Hey, I'm Xubom.</h2>
                 <p>I'm a 23-year-old Brazilian developer specializing in creating advanced experiences for Minecraft
@@ -50,10 +54,10 @@
                     experiences..</p>
             </div>
 
-            <div class="skills-container">
+            <div class="skills-container reveal">
                 <div>
                     <span class="section-title">Technical Skills</span>
-                    <div class="skills-list">
+                    <div class="skills-list reveal-stagger">
                         <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank"
                             rel="noopener noreferrer" class="tag notranslate"><i
                                 class="fa-brands fa-js"></i>JavaScript</a>
@@ -67,7 +71,7 @@
 
                 <div>
                     <span class="section-title">Developer Tools</span>
-                    <div class="tools-list">
+                    <div class="tools-list reveal-stagger">
                         <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
                             class="tag notranslate"><i class="fa-brands fa-github"></i>GitHub</a>
                         <a href="https://www.blockbench.net/" target="_blank" rel="noopener noreferrer"
@@ -88,11 +92,11 @@
         </div>
 
         <!-- 4. TIMES QUE PARTICIPOU -->
-        <div class="teams-container">
+        <div class="teams-container reveal">
             <span class="section-title">Experience</span>
-            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Teams I've worked with</h2>
+            <h2>Teams I've worked with</h2>
 
-            <div class="teams-big-panel">
+            <div class="teams-big-panel reveal-stagger">
                 <a href="https://www.lbsg.net/" target="_blank" class="team-icon-wrapper">
                     <img src="assets/teams/lifeboat.png" alt="LifeBoat Logo" class="notranslate">
                 </a>
@@ -103,12 +107,12 @@
         </div>
 
         <!-- 3. PAINEL DE PROJETOS -->
-        <div class="projects-panel-title">
+        <div class="projects-panel-title reveal">
             <span class="section-title">Portfolio</span>
-            <h2 style="font-size: 1.8rem; letter-spacing: -0.5px;">Projects I've been involved in</h2>
+            <h2>Projects I've been involved in</h2>
         </div>
 
-        <div class="projects-infinite-slider-container" id="sliderContainer">
+        <div class="projects-infinite-slider-container reveal" id="sliderContainer">
             <div class="projects-marquee-track" id="sliderTrack">
 
                 <div class="projects-block">

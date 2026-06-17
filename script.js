@@ -1,29 +1,70 @@
+/* ==========================================================================
+   XUBOM — PORTFOLIO — Interações
+   ========================================================================== */
+
+/* --- VOXEL FIELD (ambiente em toda a página, fixed) --- */
+(function spawnVoxels() {
+    const field = document.getElementById('voxelField');
+    if (!field) return;
+
+    const COUNT = 40;
+    for (let i = 0; i < COUNT; i++) {
+        const v = document.createElement('div');
+        v.className = 'voxel';
+        const left = Math.random() * 100;
+        const size = 4 + Math.random() * 6;
+        const duration = 14 + Math.random() * 16;
+        const delay = Math.random() * -30;
+
+        v.style.left = left + 'vw';
+        v.style.width = size + 'px';
+        v.style.height = size + 'px';
+        v.style.animationDuration = duration + 's';
+        v.style.animationDelay = delay + 's';
+        field.appendChild(v);
+    }
+})();
+
+/* --- SCROLL REVEAL --- */
+(function initRevealObserver() {
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    if (!revealEls.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => observer.observe(el));
+})();
+
+/* --- SLIDER DE PROJETOS: auto-scroll contínuo + drag com inércia + wheel --- */
 const container = document.getElementById('sliderContainer');
 const track = document.getElementById('sliderTrack');
 
-// CLONAGEM AUTOMÁTICA DO SLIDER
 const originalBlock = track.querySelector('.projects-block');
 const cloneBlock = originalBlock.cloneNode(true);
 cloneBlock.setAttribute('aria-hidden', 'true');
 track.appendChild(cloneBlock);
 
-let isHovered = false; 
+let isHovered = false;
+let isDragging = false;
 let currentTranslate = 0;
-let speed = -1; // Velocidade da movimentação automática contínua
+let autoSpeed = -1;       // velocidade do movimento automático contínuo
+let dragVelocity = 0;     // velocidade acumulada durante o arrasto, usada na inércia
+let lastPointerX = 0;
+let lastPointerTime = 0;
 let animationFrameId;
 
 function getBlockWidth() {
     return track.children[0].offsetWidth;
-}
-
-function updateSliderPosition() {
-    // Só move automaticamente se o mouse NÃO estiver em cima do slider
-    if (!isHovered) {
-        currentTranslate += speed;
-        ajustarLimites();
-        track.style.transform = `translateX(${currentTranslate}px)`;
-    }
-    animationFrameId = requestAnimationFrame(updateSliderPosition);
 }
 
 function ajustarLimites() {
@@ -36,32 +77,81 @@ function ajustarLimites() {
     }
 }
 
-// NOVA LÓGICA: Movimentação horizontal através do Scroll (Rodinha do Mouse)
-container.addEventListener('wheel', (e) => {
-    // Evita que a página role para baixo enquanto rola o mouse dentro do slider
-    e.preventDefault();
-
-    // Altera a posição baseada na intensidade do scroll (e.deltaY)
-    // Multiplicado por 0.8 para suavizar o movimento
-    currentTranslate -= e.deltaY * 0.8;
-    
-    ajustarLimites();
+function applyTransform() {
     track.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function updateSliderPosition() {
+    if (!isHovered && !isDragging) {
+        if (Math.abs(dragVelocity) > 0.05) {
+            // Desacelera a inércia do arrasto até ela se anular
+            currentTranslate += dragVelocity;
+            dragVelocity *= 0.94;
+        } else {
+            dragVelocity = 0;
+            currentTranslate += autoSpeed;
+        }
+        ajustarLimites();
+        applyTransform();
+    }
+    animationFrameId = requestAnimationFrame(updateSliderPosition);
+}
+
+container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    dragVelocity = 0;
+    currentTranslate -= e.deltaY * 0.8;
+    ajustarLimites();
+    applyTransform();
 }, { passive: false });
 
-// Congelar animação automática no Hover
-container.addEventListener('mouseenter', () => {
-    isHovered = true;
-});
+container.addEventListener('mouseenter', () => { isHovered = true; });
+container.addEventListener('mouseleave', () => { isHovered = false; });
 
-container.addEventListener('mouseleave', () => {
+/* Drag to scroll (mouse + touch) com inércia ao soltar */
+function pointerDown(clientX) {
+    isDragging = true;
+    isHovered = true;
+    dragVelocity = 0;
+    lastPointerX = clientX;
+    lastPointerTime = performance.now();
+    container.classList.add('dragging');
+}
+
+function pointerMove(clientX) {
+    if (!isDragging) return;
+    const now = performance.now();
+    const dx = clientX - lastPointerX;
+    const dt = Math.max(now - lastPointerTime, 1);
+
+    currentTranslate += dx;
+    dragVelocity = dx / dt * 16; // normaliza para "px por frame" aproximado
+    ajustarLimites();
+    applyTransform();
+
+    lastPointerX = clientX;
+    lastPointerTime = now;
+}
+
+function pointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
     isHovered = false;
-});
+    container.classList.remove('dragging');
+}
+
+container.addEventListener('mousedown', (e) => pointerDown(e.clientX));
+window.addEventListener('mousemove', (e) => pointerMove(e.clientX));
+window.addEventListener('mouseup', pointerUp);
+
+container.addEventListener('touchstart', (e) => pointerDown(e.touches[0].clientX), { passive: true });
+container.addEventListener('touchmove', (e) => pointerMove(e.touches[0].clientX), { passive: true });
+container.addEventListener('touchend', pointerUp);
 
 animationFrameId = requestAnimationFrame(updateSliderPosition);
 
 
-// LÓGICA DO GOOGLE TRANSLATE
+/* --- GOOGLE TRANSLATE --- */
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'pt',
@@ -90,40 +180,46 @@ function toggleLanguage() {
     }
 }
 
-// LÓGICA DO CURSOR PERSONALIZADO
+/* --- CURSOR PERSONALIZADO --- */
 const dot = document.getElementById('customCursor');
 const follower = document.getElementById('cursorFollower');
 
-let mouseX = 0, mouseY = 0; // Posição real do mouse
-let followerX = 0, followerY = 0; // Posição suave do círculo de trás
+let mouseX = 0, mouseY = 0;
+let followerX = 0, followerY = 0;
 
-// Atualiza a posição real do mouse e move o ponto central instantaneamente
 window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
-    if(dot) {
+
+    if (dot) {
         dot.style.left = mouseX + 'px';
         dot.style.top = mouseY + 'px';
     }
 });
 
-// Função de animação contínua para criar o efeito "smooth" no seguidor
 function animateCursor() {
-    // O valor '0.15' controla a suavidade. Menor = mais lento/smooth. Maior = mais rápido.
     followerX += (mouseX - followerX) * 0.15;
     followerY += (mouseY - followerY) * 0.15;
-    
-    if(follower) {
+
+    if (follower) {
         follower.style.left = followerX + 'px';
         follower.style.top = followerY + 'px';
     }
-    
+
     requestAnimationFrame(animateCursor);
 }
 animateCursor();
 
-// Adiciona efeitos de "Hover" ao passar em botões, links e elementos clicáveis
+// Pequeno "tap" visual no clique, reforçando o feedback tátil do cursor
+window.addEventListener('mousedown', () => {
+    dot.classList.add('click');
+    follower.classList.add('click');
+});
+window.addEventListener('mouseup', () => {
+    dot.classList.remove('click');
+    follower.classList.remove('click');
+});
+
 const clickables = document.querySelectorAll('a, button, .tag, .project-img-link, .team-icon-wrapper');
 
 clickables.forEach(el => {
